@@ -66,26 +66,22 @@ function onGalleryClick(e) {
   e.preventDefault();
   if (e.target.nodeName === "IMG") {
     const instance = basicLightbox.create(`
-    <img src="${galleryItems.original}" width="1200" height="1000">
+    <img src="${e.target.dataset.source}" >
 `);
     instance.show();
   }
   closeLightbox(e);
-  window.addEventListener("keyup", clickKey);
-}
-
-function onClickHandlerClose(e) {
-  window.removeEventListener("keyup", clickKey);
+  galleryContainer.addEventListener("keydown", clickKey);
 }
 
 function closeLightbox(e) {
   if (e.target === e.currentTarget) {
-    onClickHandlerClose();
+    galleryContainer.removeEventListener("keydown", clickKey);
   }
 }
 
 function clickKey(e) {
   if (e.code === "Escape") {
-    onClickHandlerClose();
+    closeLightbox(e);
   }
 }
