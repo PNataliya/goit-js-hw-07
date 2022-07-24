@@ -71,12 +71,12 @@ function onGalleryClick(e) {
     instance.show();
   }
   closeLightbox(e);
-  galleryContainer.addEventListener("keydown", clickKey);
+  window.addEventListener("keydown", clickKey);
 }
 
 function closeLightbox(e) {
   if (e.target === e.currentTarget) {
-    galleryContainer.removeEventListener("keydown", clickKey);
+    window.removeEventListener("keydown", clickKey);
   }
 }
 
