@@ -76,66 +76,13 @@ function onModalMarkup(e) {
       },
     }
   );
-  instance.show();
-}
-
-// закрытие модального окна по нажатию клавиши Escape.
-
-function onCloseEsc(e) {
-  if (e.code === "Escape") {
-    console.log(e.code);
+  function onCloseEsc(e) {
+    if (e.code === "Escape") {
+      instance.close();
+    } else {
+      return;
+    }
   }
+  instance.show();
+  return instance;
 }
-
-// // Hide the lightbox
-// 	const _close = (next) => {
-
-// 		// Run onClose callback and stop execution when function returns false
-// 		if (opts.onClose(instance) === false) return false
-
-// 		return close(elem, () => {
-
-// 			// Continue with the callback when available
-// 			if (typeof next === 'function') return next(instance)
-
-// 		})
-
-// 	}
-
-// 	// Close lightbox when clicking the background
-// 	if (opts.closable === true) elem.addEventListener('click', (e) => {
-
-// 		// If e.target is not the same element as elem,
-// 		// then the user clicked a descendant of the element.
-// 		if (e.target !== elem) return
-
-// 		// Close lightbox with the instance function
-// 		_close()
-
-// 	})
-
-// 	// Assign instance to a variable so the instance can be used
-// 	// elsewhere in the current function.
-// 	const instance = {
-// 		element: _element,
-// 		visible: _visible,
-// 		show: _show,
-// 		close: _close
-// 	}
-
-// 	return instance
-
-// }
-
-// document.addEventListener("keydown", (e) => {
-//   const modalEl = document.querySelectorAll(".basicLightbox");
-//   if (e.code === "Escape") {
-//     for (let i = 0; i < modalEl.length; i += 1) {
-//       modalEl[i].classList.remove(".basicLightbox--visible");
-//     }
-//   }
-// });
-
-/* <div class="basicLightbox basicLightbox--img basicLightbox--visible">
-			<div class="basicLightbox__placeholder" role="dialog"><img src="https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg"></div>
-		</div> */
