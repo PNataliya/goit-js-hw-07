@@ -60,28 +60,35 @@ function createGalleryCardsMarkup(galleryItems) {
     .join("");
 }
 
-galleryContainer.addEventListener("click", onGalleryClick);
+galleryContainer.addEventListener("click", onModalMarkup);
 
-function onGalleryClick(e) {
+function onModalMarkup(e) {
   e.preventDefault();
-  if (e.target.nodeName === "IMG") {
-    const instance = basicLightbox.create(`
-    <img src="${e.target.dataset.source}" >
-`);
-    instance.show();
-  }
-  closeLightbox(e);
-  window.addEventListener("keydown", clickKey);
+  //if (e.target.nodeName === "IMG") {
+  let instance = basicLightbox.create(
+    `<img src="${e.target.dataset.source}">`,
+    {
+      onShow: (instance) => {
+        window.addEventListener("keydown", onCloseEsc);
+      },
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onCloseEsc);
+      },
+    }
+  );
+  instance.show();
 }
 
-function closeLightbox(e) {
-  if (e.target === e.currentTarget) {
-    window.removeEventListener("keydown", clickKey);
-  }
-}
+// function closeLightbox(e) {
+//   if (e.target === e.currentTarget) {
+//     window.removeEventListener("keydown", clickKey);
+//   }
+// }
 
-function clickKey(e) {
+function onCloseEsc(e) {
   if (e.code === "Escape") {
-    closeLightbox(e);
+    galleryContainer.removeEventListener("click", onModalMarkup);
+    //closeLightbox(e);
+    console.log(e.code);
   }
 }
