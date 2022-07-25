@@ -42,18 +42,25 @@ function createGalleryCardsMarkup(galleryItems) {
     .join("");
 }
 
-let galleryEl = new SimpleLightbox(".gallery a");
+// отображение подписей к изображениям из атрибута alt. Пусть подпись будет снизу и появляется через 250 миллисекунд после открытия изображения.
+
+const lightbox = new SimpleLightbox(".gallery a", {
+  caption: true,
+  captionType: "attr",
+  captionPosition: "bottom",
+  captionDelay: 250,
+  captionsData: "alt",
+});
+
 galleryEl.on("show.simplelightbox", function () {
   galleryContainer.addEventListener("click", galleryEl.on);
-
-  // do something…
 });
 
 galleryEl.on("error.simplelightbox", function (e) {
   if (e.target.nodeName === "IMG") {
     return (captionsData = "galleryItem.alt");
   }
-  console.log(e); // some usefull information
+  console.log(e);
 });
 
 console.log(galleryItems);
