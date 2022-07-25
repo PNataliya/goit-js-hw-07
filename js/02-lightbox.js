@@ -52,15 +52,15 @@ const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
 });
 
-galleryEl.on("show.simplelightbox", function () {
-  galleryContainer.addEventListener("click", galleryEl.on);
-});
+// gallery.on("show.simplelightbox", function () {
+//   galleryContainer.addEventListener("click", galleryEl.on);
+// });
 
-galleryEl.on("error.simplelightbox", function (e) {
-  if (e.target.nodeName === "IMG") {
-    return (captionsData = "galleryItem.alt");
-  }
-  console.log(e);
-});
+// gallery.on("error.simplelightbox", function (e) {
+//   if (e.target.nodeName === "IMG") {
+//     return (captionsData = "galleryItem.alt");
+//   }
+//   console.log(e);
+// });
 
 console.log(galleryItems);
